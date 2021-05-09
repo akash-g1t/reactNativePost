@@ -25,19 +25,19 @@ const Post = ({navigation, route}) => {
     const renderItem = ({ item }) => {
         return (
             <View key={item.id} style={styles.CommentItem}>
-                <Text style={styles.postTitle}>{item.id}. {item.name.substr(0,20)}...</Text>
-                <Text style={styles.postTitle}>{item.email}</Text>
-                <Text style={styles.postBody}>{item.body}</Text>
+                <Text style={styles.SingleCommentTitle}>{item.id}. {item.name.substr(0,20)}...</Text>
+                <Text style={styles.SingleCommentTitle}>{item.email}</Text>
+                <Text style={styles.SingleCommentBody}>{item.body}</Text>
             </View>
         )
     }
 
     return (
-    <View>
+    <View style={styles.container}>
         <Text style={{ marginTop: 5}}>Post</Text>
         <View key={post.id} style={styles.SinglepostItem}>
-            <Text style={styles.postTitle}>{post.id}. {post.title && post.title.substr(0, 20)}...</Text>
-            <Text style={styles.postBody}>{post.body}</Text>
+            <Text style={styles.SinglePostTitle}>{post.id}. {post.title && post.title.substr(0, 20)}...</Text>
+            <Text style={styles.SinglePostBody}>{post.body}</Text>
         </View>
         <Text>Comments</Text>
         <View style={styles.scrollAreaComments}>
