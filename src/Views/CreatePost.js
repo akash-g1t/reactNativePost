@@ -6,7 +6,9 @@ import {
     Button,
     Alert,
     Text,
-    StyleSheet
+    StyleSheet,
+    TouchableWithoutFeedback,
+    Keyboard
 } from 'react-native';
 import styles from '../styling/styles';
 
@@ -31,21 +33,25 @@ const CreatePost = ({navigation}) => {
     }
 
     return (
-        <View>
-            <View style={styles.CreatePost}>
-                <TextInput placeholder='Enter a Title' value={title} onChangeText={setTitle} />
+        <TouchableWithoutFeedback onPress={() => {
+            Keyboard.dismiss()
+        }}>
+            <View>
+                <View style={styles.CreatePost}>
+                    <TextInput placeholder='Enter a Title' value={title} onChangeText={setTitle} />
+                </View>
+                <View style={styles.CreatePost}>
+                    <TextInput placeholder='Paragraph' value={body} onChangeText={setBody} />
+                </View>
+                <Button onPress={handleSubmit} title='Submit' />
+                { post.id && 
+                <View style={stylesInline.postView}>
+                    <Text style={styles.postTitle}>{post.id}. {post.title && post.title.substr(0, 20)}...</Text>
+                    <Text style={styles.postBody}>{ post.body}</Text>
+                </View>
+                }
             </View>
-            <View style={styles.CreatePost}>
-                <TextInput placeholder='Paragraph' value={body} onChangeText={setBody} />
-            </View>
-            <Button onPress={handleSubmit} title='Submit' />
-            { post.id && 
-            <View style={stylesInline.postView}>
-                <Text style={styles.postTitle}>{post.id}. {post.title && post.title.substr(0, 20)}...</Text>
-                <Text style={styles.postBody}>{ post.body}</Text>
-            </View>
-            }
-        </View>
+        </TouchableWithoutFeedback>
     )
 }
 
